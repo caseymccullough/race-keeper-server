@@ -19,12 +19,14 @@ public class RaceRunnerResultController {
         this.resultsDao = singleRaceResultsDao;
     }
 
-    @RequestMapping(method = RequestMethod.GET)
-    public List<RaceRunnerResult> listByTime(@RequestParam(value = "id") int raceId,
-                                             @RequestParam(value = "limit") int limit,
-                                             @RequestParam(value = "gender") char gender) {
-        return resultsDao.getRunnersByTime(raceId, gender, limit);
-
-    }
+//    @RequestMapping(method = RequestMethod.GET)
+//    public List<RaceRunnerResult> listByTime(@RequestParam(value = "id") int raceId,
+//                                             @RequestParam(value = "limit", defaultValue = "30") int limit,
+//                                             @RequestParam(value = "gender", required = false) Character gender) {
+//        // return resultsDao.getRunnersByTime(raceId, gender, limit);
+//
+//        RaceRunnerResult testResult = new RaceRunnerResult()
+//
+//    }
 
 }

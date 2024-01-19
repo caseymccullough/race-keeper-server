@@ -14,7 +14,6 @@ public class RaceRunnerResult {
 
     private char gender_code;
     private LocalDate birthday;
-
     double raceTimeInSeconds;
 
     public RaceRunnerResult() {
