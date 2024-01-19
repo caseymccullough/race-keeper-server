@@ -4,11 +4,12 @@ package com.mccullough.dao;
 import com.mccullough.model.RaceRunnerResult;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
+import org.springframework.stereotype.Component;
 
 import javax.sql.DataSource;
 import java.util.ArrayList;
 import java.util.List;
-
+@Component
 public class JdbcSingleRaceResultsDao implements SingleRaceResultsDao{
 
     private final JdbcTemplate jdbcTemplate;
@@ -19,7 +20,7 @@ public class JdbcSingleRaceResultsDao implements SingleRaceResultsDao{
 
 
     @Override
-    public List<RaceRunnerResult> getRunnersByTime(int raceId, int raceYear, int limit) {
+    public List<RaceRunnerResult> getRunnersByTime(int raceId, char genderCode, int limit) {
         List<RaceRunnerResult> runnerResults = new ArrayList<>();
         String sql = "SELECT runner.first_name, runner.last_name, runner.gender_code, runner.city, runner.state_code, runner.birthday, \n" +
                 "DATE_PART ('YEAR', AGE(current_date, runner.birthday)) AS current_age, \n" +
@@ -27,11 +28,12 @@ public class JdbcSingleRaceResultsDao implements SingleRaceResultsDao{
                 "extract (epoch from rr.run_time) AS race_time_seconds\n" +
                 "FROM runner_race rr\n" +
                 "JOIN runner ON runner.runner_id = rr.runner_id\n" +
-                "WHERE race_id = ? AND race_year = ?\n" +
+                "WHERE race_id = ? AND runner.gender_code = ?\n" +
                 "ORDER BY rr.run_time ASC\n" +
                 "limit ?;";
 
-        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, raceId, raceYear, limit);
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, raceId, genderCode, limit);
+        System.out.println("limit: " + limit);
         while (results.next()){
             RaceRunnerResult raceRunnerResult = mapToRaceRunnerResult(results);
             runnerResults.add(raceRunnerResult);
