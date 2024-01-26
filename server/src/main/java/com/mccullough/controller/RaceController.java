@@ -2,10 +2,9 @@ package com.mccullough.controller;
 
 import com.mccullough.dao.RaceDao;
 import com.mccullough.model.Race;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import com.mccullough.model.RaceRunnerResult;
+import com.mccullough.service.ResultService;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -13,9 +12,11 @@ import java.util.List;
 @RequestMapping (path = "/races")
 public class RaceController {
     private final RaceDao raceDao;
+    private final ResultService resultService;
 
-    public RaceController (RaceDao raceDao) {
+    public RaceController (RaceDao raceDao, ResultService resultService) {
         this.raceDao = raceDao;
+        this.resultService = resultService;
     }
 
     @RequestMapping(method = RequestMethod.GET)
@@ -27,5 +28,20 @@ public class RaceController {
     public Race get (@PathVariable int year) {
         return raceDao.getRaceByYear(year);
     }
+
+    @RequestMapping(path = "/{year}/results", method = RequestMethod.GET)
+    public List<RaceRunnerResult> listResults(@RequestParam(value = "race_year") int raceYear){
+        return resultService.getRaceResults(raceYear);
+    }
+
+//    @RequestMapping(method = RequestMethod.GET)
+//    public List<RaceRunnerResult> listByTime(@RequestParam(value = "id") int raceId,
+//                                             @RequestParam(value = "limit", defaultValue = "30") int limit,
+//                                             @RequestParam(value = "gender", required = false) Character gender) {
+//        // return resultsDao.getRunnersByTime(raceId, gender, limit);
+//
+//        RaceRunnerResult testResult = new RaceRunnerResult()
+//
+//    }
 
 }

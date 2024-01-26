@@ -49,9 +49,7 @@ public class JdbcRunnerDao implements RunnerDao {
         Runner runner = null;
         String sql = RUNNER_BASE_SQL +
                 "WHERE runner_id = ?;";
-
         try {
-
             SqlRowSet results = jdbcTemplate.queryForRowSet(sql, id);
             if (results.next()) {
                 runner = mapRowToRunner(results);
