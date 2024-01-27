@@ -23,4 +23,8 @@ The API can return information about runners at the following end points
 | POST   | http://localhost:8080/runners              | Add a runner to the database                                      |
 | GET    |http://localhost:8080/runners/city/Boulder | Get runner by city                                                |
 
+## Results
+
+The API can return information about race results at the following end points
+
 

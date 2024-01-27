@@ -30,7 +30,7 @@ public class RaceController {
     }
 
     @RequestMapping(path = "/{year}/results", method = RequestMethod.GET)
-    public List<RaceRunnerResult> listResults(@RequestParam(value = "race_year") int raceYear){
+    public List<RaceRunnerResult> listResults(@PathVariable(value = "year") int raceYear){
         return resultService.getRaceResults(raceYear);
     }
 

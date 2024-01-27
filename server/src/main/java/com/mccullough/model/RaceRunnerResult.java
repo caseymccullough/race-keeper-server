@@ -14,19 +14,49 @@ public class RaceRunnerResult {
 
     private char gender_code;
     private LocalDate birthday;
-    double raceTimeInSeconds;
+    private int raceTimeHours;
+    private int raceTimeMinutes;
+
+    public int getRaceTimeHours() {
+        return raceTimeHours;
+    }
+
+    public void setRaceTimeHours(int raceTimeHours) {
+        this.raceTimeHours = raceTimeHours;
+    }
+
+    public int getRaceTimeMinutes() {
+        return raceTimeMinutes;
+    }
+
+    public void setRaceTimeMinutes(int raceTimeMinutes) {
+        this.raceTimeMinutes = raceTimeMinutes;
+    }
+
+    public double getRaceTimeSeconds() {
+        return raceTimeSeconds;
+    }
+
+    public void setRaceTimeSeconds(double raceTimeSeconds) {
+        this.raceTimeSeconds = raceTimeSeconds;
+    }
+
+    private double raceTimeSeconds;
 
     public RaceRunnerResult() {
     }
 
-    public RaceRunnerResult(String first_name, String last_name, String street, String city, String state_code, char gender_code, LocalDate birthday, double raceTimeInSeconds) {
+    public RaceRunnerResult(String first_name, String last_name, String street, String city, String state_code, char gender_code, LocalDate birthday,
+                            int raceTimeHours, int raceTimeMinutes, double raceTimeSeconds) {
         this.first_name = first_name;
         this.last_name = last_name;
         this.city = city;
         this.state_code = state_code;
         this.gender_code = gender_code;
         this.birthday = birthday;
-        this.raceTimeInSeconds = raceTimeInSeconds;
+        this.raceTimeHours = raceTimeHours;
+        this.raceTimeMinutes = raceTimeMinutes;
+        this.raceTimeSeconds = raceTimeSeconds;
     }
 
     public String getFirst_name() {
@@ -53,10 +83,6 @@ public class RaceRunnerResult {
         return birthday;
     }
 
-    public double getRaceTimeInSeconds() {
-        return raceTimeInSeconds;
-    }
-
     public void setFirst_name(String first_name) {
         this.first_name = first_name;
     }
@@ -81,8 +107,5 @@ public class RaceRunnerResult {
         this.birthday = birthday;
     }
 
-    public void setRaceTimeInSeconds(double raceTimeInSeconds) {
-        this.raceTimeInSeconds = raceTimeInSeconds;
-    }
 
 }

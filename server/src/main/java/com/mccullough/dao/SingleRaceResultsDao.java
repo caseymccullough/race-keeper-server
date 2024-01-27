@@ -6,5 +6,8 @@ import com.mccullough.model.RaceRunnerResult;
 import java.util.List;
 
 public interface SingleRaceResultsDao {
-    List<RaceRunnerResult> getRunnersByTime(int raceYear, char genderCode, int limit);
+
+    List<RaceRunnerResult> getResultsByYear(int raceYear);
+
+   // List<RaceRunnerResult> getRunnersByTime(int raceYear, char genderCode, int limit);
 }
