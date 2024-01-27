@@ -9,5 +9,7 @@ public interface SingleRaceResultsDao {
 
     List<RaceRunnerResult> getResultsByYear(int raceYear);
 
-   // List<RaceRunnerResult> getRunnersByTime(int raceYear, char genderCode, int limit);
+    List<RaceRunnerResult> getResultsByYearAndGender(int year, char genderCode);
+
+    // List<RaceRunnerResult> getRunnersByTime(int raceYear, char genderCode, int limit);
 }

@@ -26,13 +26,15 @@ public class ResultService {
     public List<RaceRunnerResult> getRaceResults(int year) {
 
         // Get the race info
-        // Race race = raceDao.getRaceByYear(year);
-
-         //List<RaceRunnerResult> results = singleRaceResultsDao.getRunnersByTime(year, 'M', 30);
 
         List<RaceRunnerResult> results = singleRaceResultsDao.getResultsByYear(year);
          return results;
     }
 
 
+    public List<RaceRunnerResult> getRaceResultsByGender(int year, char genderCode) {
+
+        List<RaceRunnerResult> results = singleRaceResultsDao.getResultsByYearAndGender(year, genderCode);
+        return results;
+    }
 }

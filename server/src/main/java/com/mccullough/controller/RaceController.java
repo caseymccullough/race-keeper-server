@@ -30,8 +30,13 @@ public class RaceController {
     }
 
     @RequestMapping(path = "/{year}/results", method = RequestMethod.GET)
-    public List<RaceRunnerResult> listResults(@PathVariable(value = "year") int raceYear){
-        return resultService.getRaceResults(raceYear);
+    public List<RaceRunnerResult> listResults(@PathVariable(value = "year") int raceYear,
+                                              @RequestParam(value = "gender", defaultValue = "") String genderCode){
+        if (!genderCode.isEmpty()){
+            return resultService.getRaceResultsByGender(raceYear, genderCode.charAt(0));
+        } else {
+            return resultService.getRaceResults(raceYear);
+        }
     }
 
 //    @RequestMapping(method = RequestMethod.GET)

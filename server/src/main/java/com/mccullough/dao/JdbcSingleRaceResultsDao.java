@@ -50,6 +50,33 @@ public class JdbcSingleRaceResultsDao implements SingleRaceResultsDao {
         return runnerResults;
     }
 
+    @Override
+    public List<RaceRunnerResult> getResultsByYearAndGender(int year, char genderCode) {
+        List<RaceRunnerResult> runnerResults = new ArrayList<>();
+        String sql = "SELECT r.first_name, r.last_name, r.gender_code, r.city, r.state_code,\n" +
+                "\tEXTRACT (hour FROM rr.run_time) AS hours,\n" +
+                "\tEXTRACT (minute FROM rr.run_time) AS minutes,\n" +
+                "\tEXTRACT (second FROM rr.run_time) AS seconds\n" +
+                "FROM runner r\n" +
+                "JOIN runner_race rr ON r.runner_id = rr.runner_id\n" +
+                "JOIN race ON rr.race_year = race.race_year\n" +
+                "WHERE rr.race_year = ? AND gender_code = ?\n" +
+                "ORDER BY rr.run_time ASC\n" +
+                "LIMIT 10;";
+
+        try {
+            SqlRowSet results = jdbcTemplate.queryForRowSet(sql, year, genderCode);
+            while (results.next()) {
+                RaceRunnerResult raceRunnerResult = mapToRaceRunnerResult(results);
+                runnerResults.add(raceRunnerResult);
+            }
+        } catch (CannotGetJdbcConnectionException e) {
+            throw new DaoException("Cannot connect to server or database");
+        } catch (DataIntegrityViolationException e) {
+            throw new DaoException("Data integrity violation", e);
+        }
+        return runnerResults;
+    }
 //    @Override
 //    public List<RaceRunnerResult> getRunnersByTime(int raceId, char genderCode, int limit) {
 //        List<RaceRunnerResult> runnerResults = new ArrayList<>();
