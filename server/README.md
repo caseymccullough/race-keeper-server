@@ -27,4 +27,7 @@ The API can return information about runners at the following end points
 
 The API can return information about race results at the following end points
 
-
+| METHOD | END POINT                                  | ACTION                                                                         |
+|--------|--------------------------------------------|--------------------------------------------------------------------------------|
+| GET    | http://localhost:8080/races/2022/results              | Get list of runners who ran in given year, ordered by time                     |
+| GET    | http://localhost:8080/races/2022/results?gender=M | Get list of runners of a given gender who ran in a given year, ordered by time |
