@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Marathon Registration</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/form-style.css" />
+    <script src="script.js"></script>
+
+</head>
+
+<body>
+    <form id="userinfo" action="http://localhost:8080/runners" method="post">
+
+        <ul>
+            <!-- The "for" attribute associates the label with the form control -->
+            <!-- The "name" attribute is what will be sent to the URL -->
+            <li>
+                <label for="first_name">First Name:</label>
+                <input id="first_name" name="first_name" type="text" required />
+            </li>
+
+            <li>
+                <label for="last_name">Last Name:</label>
+                <input id="last_name" name="last_name" type="text" required />
+            </li>
+
+            <li>
+                <label for="street">Street Address:</label>
+                <input id="street" name="street" type="text" required />
+            </li>
+
+            <li>
+                <label for="city">City:</label>
+                <input id="city" name="city" type="text" required />
+            </li>
+
+            <li>
+                <label for="state_code">State:</label>
+                <input id="state_code" name="state" type="text" required />
+            </li>
+
+            <li>
+                <label for="gender_code">Gender:</label>
+                <input id="gender_code" name="gender_code" type="text" required />
+            </li>
+
+            <li><label for="birthday">Date of birth:</label>
+                <input id="birthday" name="birthday" type="date" required />
+            </li>
+
+            <li>
+                <label for="age">Age:</label>
+                <input id="age" name="age" type="number" />
+            </li>
+
+            <li class="button">
+                <button type="submit">Register</button>
+            </li>
+        </ul>
+    </form>
+
+</body>
+
+</html>
