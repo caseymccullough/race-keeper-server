@@ -8,6 +8,8 @@ form {
     padding: 1em; /* an em is equal to current font size */
     border: 1px solid #ccc;
     border-radius: 1em;
+    background: linear-gradient(lightgreen, lightyellow);
+      
   }
 
   ul {
