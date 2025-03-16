@@ -32,6 +32,14 @@ public interface RunnerDao {
     public List<Runner> getRunnersByCity(String city);
 
     /**
+     * Get a list of all runners from a given state.
+     *
+     * @param state_code the city of runners to get from the datastore
+     * @return all runners from the city as a list of Runner objects
+     */
+    public List<Runner> getRunnersByState(String state_code);
+
+    /**
      * Get a list of all the runners from the datastore that match the name.
      * The list is never null. It is empty if no matching runners were found.
      *

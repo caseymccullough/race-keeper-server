@@ -83,6 +83,26 @@ public class JdbcRunnerDao implements RunnerDao {
     }
 
     @Override
+    public List<Runner> getRunnersByState(String state_code) {
+        List<Runner> runners = new ArrayList<>();
+        String sql = RUNNER_BASE_SQL +
+                "WHERE state_code = ?;";
+
+        try {
+            SqlRowSet results = jdbcTemplate.queryForRowSet(sql, state_code);
+            while (results.next()) {
+                Runner runner = mapRowToRunner(results);
+                runners.add(runner);
+            }
+        } catch (CannotGetJdbcConnectionException e) {
+            throw new DaoException("Cannot connect to server or database");
+        } catch (DataIntegrityViolationException e) {
+            throw new DaoException("Data integrity violation", e);
+        }
+        return runners;
+    }
+
+    @Override
     public List<Runner> getRunnersByName(String name, boolean useWildCard) {
         List<Runner> runners = new ArrayList<>();
         if (useWildCard) {
