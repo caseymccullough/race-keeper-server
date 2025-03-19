@@ -165,6 +165,21 @@ public class JdbcRunnerDao implements RunnerDao {
         return runner;
     }
 
+    @Override
+    public int deleteRunner(int runnerId) {
+        int numberOfRows = 0;
+        String sql = "DELETE FROM runner " +
+                "WHERE runner_id = ?;";
+        try {
+            numberOfRows = jdbcTemplate.update(sql, runnerId);
+        } catch (CannotGetJdbcConnectionException e) {
+            throw new DaoException("Cannot connect to server or database", e);
+        } catch (DataIntegrityViolationException e) {
+            throw new DaoException("Data integrity violation", e);
+        }
+        return numberOfRows;
+    }
+
 
     private Runner mapRowToRunner(SqlRowSet results) {
         Runner runner = new Runner();

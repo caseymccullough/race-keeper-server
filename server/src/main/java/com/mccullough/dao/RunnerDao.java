@@ -65,4 +65,11 @@ public interface RunnerDao {
      */
     Runner updateRunner (Runner updatedRunner);
 
+    /**
+     *
+     * @param id
+     * @return the number of rows deleted
+     */
+    int deleteRunner (int id);
+
 }
